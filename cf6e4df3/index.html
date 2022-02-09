@@ -1,0 +1,119 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    
+<head>
+  <title>使用Coding的构建与部属，进行自动部署Hexo-小黑屋</title>
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://cdn.bootcdn.net">
+  <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+  <link rel="icon" type="image/png" href="/src/favicon.png">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <!-- <meta http-equiv="content-security-policy" content="upgrade-insecure-requests"> -->
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="CODING 持续集成简单使用">
+  <meta name="Keywords" content="">
+  <link rel="canonical" href="https://aolog.cn/cf6e4df3/ ">
+
+<link rel="stylesheet" href="/src/main.css">
+
+</head>
+
+        <body>
+            <header>
+<nav class="nav">
+  <div class="left">
+    <a href="/">Aolog's</a>
+  </div>
+  <div class="right">
+    
+      <a style="padding-right: 24px;" href="/archives/">Archives</a>
+      
+      <a style="padding-right: 24px;" href="/about/">About</a>
+      
+  </div>
+</nav>
+</header>
+                <main class="container">
+                    
+                        <div class="vie">
+                            <div class="title">
+                                使用Coding的构建与部属，进行自动部署Hexo
+                            </div>
+                            <time class="date" datetime="2020-02-16 12:20" pubdate>
+                                发布时间: 2020-02-16, 中午
+                            </time>
+                        </div>
+                        
+                                <section class="con">
+                                    
+                                            <article class="post-body" id="post-body">
+  <p>「CODING 持续集成」基于 Jenkins 提供服务和能力。持续集成（CI）进行自动部署</p>
+<p><strong>持续集成指代码仓库产生变动之后的一系列自动化过程。使用持续集成工具和过程编排能有效提升团队的开发效率，实现快速的代码迭代更新。</strong></p>
+<h2 id="开始"><a class="markdownIt-Anchor" href="#开始"></a> 开始</h2>
+<p>按照Hexo官网安装完以后呢，你每一次写文章都需要执行<code>hexo deploy</code>进行部署到Coding代码仓库又或者是Github仓库下进行部署静态网页，在这我们用CODING 持续集成（构建）减少不必要的重复劳动，提升写作质量和效率。</p>
+<p>思路：把安装好的Hexo提交到Coding代码仓库，每次提交到Coding时自动部署<br />
+<img src="https://s1.ax1x.com/2020/03/19/8yB76g.jpg" alt="Hexo目录" /><br />
+新建一个构建计划，我们使用静态配置的 Jenkinsfile,代码仓库就选你的Hexo代码仓库<br />
+<img src="https://s1.ax1x.com/2020/03/20/86IWd0.jpg" alt="构建计划" /><br />
+执行安装Hexo的一系列命令<code>npm install hexo-cli -g</code> <code>npm install</code> <code>hexo clean</code> <code>hexo g</code><br />
+<img src="https://s1.ax1x.com/2020/03/20/8gU2Lj.jpg" alt="Hexo安装命令" /><br />
+配置部署仓库地址，使用HTTPS协议代码仓库地址<br />
+<img src="https://s1.ax1x.com/2020/03/20/8gdyrQ.jpg" alt="部署仓库地址" /></p>
+<h2 id="新建访问令牌"><a class="markdownIt-Anchor" href="#新建访问令牌"></a> 新建访问令牌</h2>
+<p>需要在个人设置中新建访问令牌<br />
+<img src="https://s1.ax1x.com/2020/03/20/8gK8Gn.jpg" alt="新建访问令牌" /><br />
+<strong>勾选第一项，密钥只显示一次，注意复制保存</strong><br />
+<img src="https://s1.ax1x.com/2020/03/20/8gMEo4.jpg" alt="密钥" /></p>
+<h2 id="完整配置"><a class="markdownIt-Anchor" href="#完整配置"></a> 完整配置</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">pipeline &#123;</span><br><span class="line">  agent any</span><br><span class="line">  stages &#123;</span><br><span class="line">    stage(<span class="string">&#x27;拉取源码&#x27;</span>) &#123;</span><br><span class="line">      steps &#123;</span><br><span class="line">        checkout([<span class="variable">$class</span>: <span class="string">&#x27;GitSCM&#x27;</span>,branches: [[name: env.GIT_BUILD_REF]],</span><br><span class="line">        userRemoteConfigs: [[</span><br><span class="line">          url: env.GIT_REPO_URL,</span><br><span class="line">          credentialsId: env.CREDENTIALS_ID</span><br><span class="line">        ]]</span><br><span class="line">      ])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  stage(<span class="string">&#x27;安装&#x27;</span>) &#123;</span><br><span class="line">    steps &#123;</span><br><span class="line">      sh <span class="string">&#x27;npm install -g hexo-cli&#x27;</span></span><br><span class="line">      sh <span class="string">&#x27;npm install&#x27;</span></span><br><span class="line">      sh <span class="string">&#x27;hexo clean&#x27;</span></span><br><span class="line">      sh <span class="string">&#x27;hexo g&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  stage(<span class="string">&#x27;部署&#x27;</span>) &#123;</span><br><span class="line">    steps &#123;</span><br><span class="line">      <span class="built_in">dir</span>(path: <span class="string">&#x27;public&#x27;</span>) &#123;</span><br><span class="line">        script &#123;</span><br><span class="line">          sh <span class="string">&#x27;git init&#x27;</span></span><br><span class="line">          sh <span class="string">&#x27;git add -A&#x27;</span></span><br><span class="line">          sh <span class="string">&#x27;git commit -m auto&#x27;</span></span><br><span class="line">          sh <span class="string">&#x27;git push -f https://访问令牌用户名:密钥@HTTPS协议代码仓库地址 master&#x27;</span></span><br><span class="line">         &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="手动触发测试"><a class="markdownIt-Anchor" href="#手动触发测试"></a> 手动触发测试</h2>
+<p><img src="https://s1.ax1x.com/2020/03/20/8grE7Q.jpg" alt="完成" /></p>
+
+</article>
+<hr>
+<article class="comments" id="valine">
+</article>
+                                </section>
+                </main>
+                <footer class="footer">
+    <div>&copy;&thinsp;2019-2022</div>
+</footer>
+<script src="https://cdn.bootcdn.net/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+
+<script src="/src/main.js"></script>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/smoothscroll/1.4.9/SmoothScroll.min.js"></script>
+
+
+  <script src='https://cdn.bootcdn.net/ajax/libs/valine/1.4.9/Valine.min.js'></script>
+      <script type="text/javascript">
+        window.onload = function () {
+          new Valine({
+            el: "#valine",
+            app_id: "BhI3o67ryeG4PyK8rDyprXb3-9Nh9j0Va",
+            app_key: "DsFNqzRxjVf3vyIfBahpxTG5",
+            placeholder: "昵称填写QQ号自动填写QQ昵称,邮箱,显示QQ头像",
+            path: window.location.pathname,
+            avatar: "mp",
+            meta: ["nick", "mail"],
+            requiredFields: ['mail'],
+            enableQQ: "true"
+          });
+        }
+      </script>  
+
+<script>
+(function(){var src="https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";document.write('<script src="'+src+'" id="sozz"><\/script>')})();(function(){var bp=document.createElement("script");var curProtocol=window.location.protocol.split(":")[0];if(curProtocol==="https"){bp.src="https://zz.bdstatic.com/linksubmit/push.js"}else{bp.src="http://push.zhanzhang.baidu.com/push.js"}var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s)})();
+</script>
+        </body>
+
+    </html>

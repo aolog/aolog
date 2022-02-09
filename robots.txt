@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /about/
+Disallow: /archives/
+Disallow: /page/
+Disallow: /404.html
+Sitemap: https://aolog.cn/sitemap.xml

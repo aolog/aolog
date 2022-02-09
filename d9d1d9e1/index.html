@@ -1,0 +1,124 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    
+<head>
+  <title>Hexo支持PWA的简单配置-小黑屋</title>
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://cdn.bootcdn.net">
+  <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+  <link rel="icon" type="image/png" href="/src/favicon.png">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <!-- <meta http-equiv="content-security-policy" content="upgrade-insecure-requests"> -->
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="PWA是Progressive Web App的英文缩写，渐进式增强WEB应用。PWA 可以将 Web 和 App 各自的优势融合在一起：渐进式、可响应、可离线、实现类似 App 的交互、即时更新、安全、可以被搜索引擎检索、可推送、可安装、可链接。">
+  <meta name="Keywords" content="">
+  <link rel="canonical" href="https://aolog.cn/d9d1d9e1/ ">
+
+<link rel="stylesheet" href="/src/main.css">
+
+</head>
+
+        <body>
+            <header>
+<nav class="nav">
+  <div class="left">
+    <a href="/">Aolog's</a>
+  </div>
+  <div class="right">
+    
+      <a style="padding-right: 24px;" href="/archives/">Archives</a>
+      
+      <a style="padding-right: 24px;" href="/about/">About</a>
+      
+  </div>
+</nav>
+</header>
+                <main class="container">
+                    
+                        <div class="vie">
+                            <div class="title">
+                                Hexo支持PWA的简单配置
+                            </div>
+                            <time class="date" datetime="2020-05-06 10:56" pubdate>
+                                发布时间: 2020-05-06, 上午
+                            </time>
+                        </div>
+                        
+                                <section class="con">
+                                    
+                                            <article class="post-body" id="post-body">
+  <h2 id="什么是pwa"><a class="markdownIt-Anchor" href="#什么是pwa"></a> 什么是PWA</h2>
+<p>PWA是Progressive Web App的英文缩写，渐进式增强WEB应用。PWA 可以将 Web 和 App 各自的优势融合在一起：渐进式、可响应、可离线、实现类似 App 的交互、即时更新、安全、可以被搜索引擎检索、可推送、可安装、可链接。</p>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h2>
+<h3 id="web-app-manifest"><a class="markdownIt-Anchor" href="#web-app-manifest"></a> Web App Manifest</h3>
+<p>Web App Manifest 是一个 JSON 文档，为渐进式 Web 应用提供应用程序元数据。<br />
+自动生成 <a target="_blank" rel="noopener" href="https://www.pwabuilder.com/">PWABuilder</a></p>
+<h4 id="引用-manifestjson-文件"><a class="markdownIt-Anchor" href="#引用-manifestjson-文件"></a> 引用 manifest.json 文件</h4>
+<p>manifest.json 文件需要在 head 标签里引用，在 <code>&lt;head&gt;</code> 中添加</p>
+<blockquote>
+<p>link rel=“manifest” href=&quot;/manifest.json&quot;&gt;</p>
+</blockquote>
+<p>本站 manifest.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;小黑屋&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;short_name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;aolog.cn&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;theme_color&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#FFFFFF&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;background_color&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#FFFFFF&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;display&quot;</span><span class="punctuation">:</span> <span class="string">&quot;standalone&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;Scope&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;start_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;icons&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;src&quot;</span><span class="punctuation">:</span> <span class="string">&quot;img/icons/icon-192x192.png&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;sizes&quot;</span><span class="punctuation">:</span> <span class="string">&quot;192x192&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;image/png&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;src&quot;</span><span class="punctuation">:</span> <span class="string">&quot;img/icons/icon-512x512.png&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;sizes&quot;</span><span class="punctuation">:</span> <span class="string">&quot;512x512&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;image/png&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;splash_pages&quot;</span><span class="punctuation">:</span> <span class="keyword">null</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><code>icons</code>- 必须包括 192px 和 512px 图标</p>
+<h3 id="service-worker"><a class="markdownIt-Anchor" href="#service-worker"></a> Service worker</h3>
+<p>使用Hexo插件<a target="_blank" rel="noopener" href="https://github.com/JLHwung/hexo-offline">hexo-offline</a></p>
+<blockquote>
+<p>npm i hexo-offline --save</p>
+</blockquote>
+<p>打开<code>_config.yml</code>文件添加</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># offline config passed to sw-precache.</span></span><br><span class="line"><span class="attr">offline:</span></span><br><span class="line">  <span class="attr">maximumFileSizeToCacheInBytes:</span> <span class="number">5242880</span></span><br><span class="line">  <span class="attr">staticFileGlobs:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">public/**/*.&#123;js,html,css,png,jpg,gif,svg,eot,ttf,woff,woff2&#125;</span></span><br><span class="line">  <span class="attr">stripPrefix:</span> <span class="string">public</span></span><br><span class="line">  <span class="attr">verbose:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">runtimeCaching:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">urlPattern:</span> <span class="string">/**/*</span></span><br><span class="line">      <span class="attr">handler:</span> <span class="string">cacheFirst</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="attr">origin:</span> <span class="string">cdn.staticfile.org</span></span><br></pre></td></tr></table></figure>
+<p><code>runtimeCaching</code>CDN配置<br />
+<code>origin</code>填写CDN域名</p>
+<h2 id="完成"><a class="markdownIt-Anchor" href="#完成"></a> 完成</h2>
+<p>打开浏览器的开发人员工具进行测试<br />
+<img src="https://z3.ax1x.com/2021/04/07/cGhbi8.png" alt="测试" /></p>
+
+</article>
+<hr>
+<article class="comments" id="valine">
+</article>
+                                </section>
+                </main>
+                <footer class="footer">
+    <div>&copy;&thinsp;2019-2022</div>
+</footer>
+<script src="https://cdn.bootcdn.net/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+
+<script src="/src/main.js"></script>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/smoothscroll/1.4.9/SmoothScroll.min.js"></script>
+
+
+  <script src='https://cdn.bootcdn.net/ajax/libs/valine/1.4.9/Valine.min.js'></script>
+      <script type="text/javascript">
+        window.onload = function () {
+          new Valine({
+            el: "#valine",
+            app_id: "BhI3o67ryeG4PyK8rDyprXb3-9Nh9j0Va",
+            app_key: "DsFNqzRxjVf3vyIfBahpxTG5",
+            placeholder: "昵称填写QQ号自动填写QQ昵称,邮箱,显示QQ头像",
+            path: window.location.pathname,
+            avatar: "mp",
+            meta: ["nick", "mail"],
+            requiredFields: ['mail'],
+            enableQQ: "true"
+          });
+        }
+      </script>  
+
+<script>
+(function(){var src="https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";document.write('<script src="'+src+'" id="sozz"><\/script>')})();(function(){var bp=document.createElement("script");var curProtocol=window.location.protocol.split(":")[0];if(curProtocol==="https"){bp.src="https://zz.bdstatic.com/linksubmit/push.js"}else{bp.src="http://push.zhanzhang.baidu.com/push.js"}var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s)})();
+</script>
+        </body>
+
+    </html>

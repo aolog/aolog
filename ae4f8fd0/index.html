@@ -1,0 +1,171 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    
+<head>
+  <title>Windows 下 ESP8266_RTOS_SDK v3.0 的开发环境-小黑屋</title>
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://cdn.bootcdn.net">
+  <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+  <link rel="icon" type="image/png" href="/src/favicon.png">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <!-- <meta http-equiv="content-security-policy" content="upgrade-insecure-requests"> -->
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Windows 下 ESP8266_RTOS_SDK v3.0 的开发环境">
+  <meta name="Keywords" content="">
+  <link rel="canonical" href="https://aolog.cn/ae4f8fd0/ ">
+
+<link rel="stylesheet" href="/src/main.css">
+
+</head>
+
+        <body>
+            <header>
+<nav class="nav">
+  <div class="left">
+    <a href="/">Aolog's</a>
+  </div>
+  <div class="right">
+    
+      <a style="padding-right: 24px;" href="/archives/">Archives</a>
+      
+      <a style="padding-right: 24px;" href="/about/">About</a>
+      
+  </div>
+</nav>
+</header>
+                <main class="container">
+                    
+                        <div class="vie">
+                            <div class="title">
+                                Windows 下 ESP8266_RTOS_SDK v3.0 的开发环境
+                            </div>
+                            <time class="date" datetime="2020-04-01 07:30" pubdate>
+                                发布时间: 2020-04-01, 早上
+                            </time>
+                        </div>
+                        
+                                <section class="con">
+                                    
+                                            <article class="post-body" id="post-body">
+  <h2 id="windows-工具链的设置"><a class="markdownIt-Anchor" href="#windows-工具链的设置"></a> Windows 工具链的设置</h2>
+<h3 id="介绍"><a class="markdownIt-Anchor" href="#介绍"></a> 介绍</h3>
+<p>Windows 没有内置的&quot;make&quot;的环境，因此安装工具链需要与 GNU 兼容的环境。我们使用 MSYS2 环境来提供此功能。您不需要一直使用此环境（您可以使用Eclipse或其他前端），但它在后台运行。</p>
+<h3 id="开发环境的准备包括两个步骤"><a class="markdownIt-Anchor" href="#开发环境的准备包括两个步骤"></a> 开发环境的准备包括两个步骤：</h3>
+<h4 id="1-工具链的设置"><a class="markdownIt-Anchor" href="#1-工具链的设置"></a> 1. 工具链的设置</h4>
+<ul>
+<li>快速设置是从dl.espressif.com下载 Windows 一体机工具链和 MSYS2 zip 文件：</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://dl.espressif.com/dl/esp32_win32_msys2_environment_and_toolchain-20190611.zip">https://dl.espressif.com/dl/esp32_win32_msys2_environment_and_toolchain-20190611.zip</a></p>
+</blockquote>
+<ul>
+<li>下载 ESP8266 的工具链 v5.2.0</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://dl.espressif.com/dl/xtensa-lx106-elf-win32-1.22.0-100-ge567ec7-5.2.0.zip">https://dl.espressif.com/dl/xtensa-lx106-elf-win32-1.22.0-100-ge567ec7-5.2.0.zip</a></p>
+</blockquote>
+<h4 id="2-从-github-获取esp8266_rtos_sdk"><a class="markdownIt-Anchor" href="#2-从-github-获取esp8266_rtos_sdk"></a> 2. 从 GitHub 获取ESP8266_RTOS_SDK</h4>
+<p>除了工具链(包含程序编译和构建应用程序),您还需要ESP8266特定API /库。 他们由Espressif提供 <a target="_blank" rel="noopener" href="https://github.com/espressif/ESP8266_RTOS_SDK">ESP8266_RTOS_SDK</a> 库 。</p>
+<ul>
+<li>下载最新版本 zip 文件</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/espressif/ESP8266_RTOS_SDK/releases">https://github.com/espressif/ESP8266_RTOS_SDK/releases</a></p>
+</blockquote>
+<p>下载完及解压后的文件<br />
+<img src="https://s1.ax1x.com/2020/04/26/J6QHG4.png" alt="文件" /></p>
+<p>将<code>xtensa-lx106-elf-win32-1.22.0-100-ge567ec7-5.2.0</code>文件夹下的<code>xtensa-lx106-elf</code>文件夹移动到<code>msys32\opt</code>下，不移其实也没有什么问题,后面设置好就行。</p>
+<h3 id="设置-idf_path-环境变量"><a class="markdownIt-Anchor" href="#设置-idf_path-环境变量"></a> 设置 <code>IDF_PATH</code> 环境变量</h3>
+<p>编辑<code>msys32\etc\profile.d</code>目录下<code>esp32_toolchain.sh</code>文件添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This file was created by ESP-IDF windows_install_prerequisites.sh</span></span><br><span class="line"><span class="comment"># and will be overwritten if that script is run again.</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/opt/xtensa-esp32-elf/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/opt/xtensa-lx106-elf/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line"><span class="built_in">export</span> IDF_PATH=<span class="string">&quot;E:/ESP8266_RTOS_SDK&quot;</span></span><br><span class="line"><span class="built_in">export</span> LANG=<span class="string">&quot;en_US&quot;</span></span><br></pre></td></tr></table></figure>
+<p><code>PATH</code>为刚才复制的<code>xtensa-lx106-elf</code>路径，注意<code>/</code>符号。<br />
+<code>IDF_PATH</code>为解压的<code>ESP8266_RTOS_SDK</code>路径，注意<code>/</code>符号。<br />
+<code>LANG</code>设置为<code>en_US</code>以防出现乱码</p>
+<h3 id="编译示例"><a class="markdownIt-Anchor" href="#编译示例"></a> 编译示例</h3>
+<p>将<code>ESP8266_RTOS_SDK\examples\get-started</code>下<code>hello_world</code>文件夹复制到<code>msys32\home\username</code>下<br />
+运行<code>msys2_shell.cmd</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> hello_world</span><br><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2020/04/26/J626xJ.png" alt="报错了" /><br />
+没有成功运行，原因是找不到<code>python</code>命令<br />
+我们下载的 MSYS2 是自带<code>python</code>的，为什么会报错具体不清楚<br />
+只需要在<code>msys32\etc\profile.d\esp32_toolchain.sh</code>文件添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/mingw32/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>重新打开<code>msys2_shell.cmd</code></p>
+<p><img src="https://s1.ax1x.com/2020/04/26/J6Rwyd.png" alt="成功" /></p>
+<p>尝试编译<code>make -j</code></p>
+<p><img src="https://s1.ax1x.com/2020/04/26/J6RbfU.png" alt="编译成功" /></p>
+<h3 id="设置环境后您可以开始进行应用程序开发"><a class="markdownIt-Anchor" href="#设置环境后您可以开始进行应用程序开发"></a> 设置环境后，您可以开始进行应用程序开发。</h3>
+<ol>
+<li>
+<p>项目的配置和编写代码<br />
+<code>make menuconfig</code>配置端口</p>
+</li>
+<li>
+<p>编译项目并将其链接以构建应用程序<br />
+<code>make all</code><br />
+<code>make</code>后面加<code>-j</code>启用并行编译多个文件</p>
+</li>
+<li>
+<p>将应用程序上传到ESP8266EX<br />
+<code>make flash</code></p>
+</li>
+<li>
+<p>应用程序的监视/调试<br />
+查看串口输出<code>make monitor</code><br />
+要一次上传并监视输出，可以运行<br />
+<code>make flash monitor</code></p>
+</li>
+</ol>
+<ul>
+<li>擦除所有内容，然后重新刷新新应用，引导加载程序和初始化数据仓<br />
+<code>make erase_flash flash</code></li>
+</ul>
+
+</article>
+<hr>
+<article class="comments" id="valine">
+</article>
+                                </section>
+                </main>
+                <footer class="footer">
+    <div>&copy;&thinsp;2019-2022</div>
+</footer>
+<script src="https://cdn.bootcdn.net/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+
+<script src="/src/main.js"></script>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/smoothscroll/1.4.9/SmoothScroll.min.js"></script>
+
+
+  <script src='https://cdn.bootcdn.net/ajax/libs/valine/1.4.9/Valine.min.js'></script>
+      <script type="text/javascript">
+        window.onload = function () {
+          new Valine({
+            el: "#valine",
+            app_id: "BhI3o67ryeG4PyK8rDyprXb3-9Nh9j0Va",
+            app_key: "DsFNqzRxjVf3vyIfBahpxTG5",
+            placeholder: "昵称填写QQ号自动填写QQ昵称,邮箱,显示QQ头像",
+            path: window.location.pathname,
+            avatar: "mp",
+            meta: ["nick", "mail"],
+            requiredFields: ['mail'],
+            enableQQ: "true"
+          });
+        }
+      </script>  
+
+<script>
+(function(){var src="https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";document.write('<script src="'+src+'" id="sozz"><\/script>')})();(function(){var bp=document.createElement("script");var curProtocol=window.location.protocol.split(":")[0];if(curProtocol==="https"){bp.src="https://zz.bdstatic.com/linksubmit/push.js"}else{bp.src="http://push.zhanzhang.baidu.com/push.js"}var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s)})();
+</script>
+        </body>
+
+    </html>

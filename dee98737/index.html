@@ -1,0 +1,127 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    
+<head>
+  <title>Linux创建Swap-小黑屋</title>
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://cdn.bootcdn.net">
+  <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+  <link rel="icon" type="image/png" href="/src/favicon.png">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <!-- <meta http-equiv="content-security-policy" content="upgrade-insecure-requests"> -->
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Linux下Swap类似Windows系统下的“虚拟内存”。">
+  <meta name="Keywords" content="">
+  <link rel="canonical" href="https://aolog.cn/dee98737/ ">
+
+<link rel="stylesheet" href="/src/main.css">
+
+</head>
+
+        <body>
+            <header>
+<nav class="nav">
+  <div class="left">
+    <a href="/">Aolog's</a>
+  </div>
+  <div class="right">
+    
+      <a style="padding-right: 24px;" href="/archives/">Archives</a>
+      
+      <a style="padding-right: 24px;" href="/about/">About</a>
+      
+  </div>
+</nav>
+</header>
+                <main class="container">
+                    
+                        <div class="vie">
+                            <div class="title">
+                                Linux创建Swap
+                            </div>
+                            <time class="date" datetime="2019-10-13 09:34" pubdate>
+                                发布时间: 2019-10-13, 上午
+                            </time>
+                        </div>
+                        
+                                <section class="con">
+                                    
+                                            <article class="post-body" id="post-body">
+  <p>Linux下Swap类似Windows系统下的“虚拟内存”。可以缓解内存不足的问题。但在内存充足的情况下，可能因为内存数据被交换到Swap而影响访问速度。数据库系统一般都对响应延迟比较敏感，如果使用Swap代替内存，数据库服务性能必然不可接受。服务器运行软件常常为了速度而关闭Swap。</p>
+<h3 id="创建swap文件"><a class="markdownIt-Anchor" href="#创建swap文件"></a> 创建swap文件</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/zero of=/opt/swapfile bs=1M count=1024</span><br></pre></td></tr></table></figure>
+<p><code>if</code>表示输入文件<br />
+<code>/dev/zero</code>表示一个空文件，即以null字符写入文件中<br />
+<code>of</code>表示输出文件<br />
+<code>bs</code>每个块多少个字节，可以带单位<br />
+<code>count</code>表示多少个块<br />
+上面就在<code>/opt/</code>目录下创建了1G的<code>swapfile</code>文件</p>
+<h3 id="转换成swap文件"><a class="markdownIt-Anchor" href="#转换成swap文件"></a> 转换成Swap文件</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkswap /opt/swapfile</span><br></pre></td></tr></table></figure>
+<h4 id="使用swap挂载"><a class="markdownIt-Anchor" href="#使用swap挂载"></a> 使用Swap，挂载</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon /opt/swapfile</span><br></pre></td></tr></table></figure>
+<h4 id="卸载"><a class="markdownIt-Anchor" href="#卸载"></a> 卸载</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapoff /opt/swapfile</span><br></pre></td></tr></table></figure>
+<p>查看内存和Swap<br />
+<code>free -h</code><br />
+查看Swap的信息<br />
+<code>swapon -s</code></p>
+<h3 id="设置swap优先级"><a class="markdownIt-Anchor" href="#设置swap优先级"></a> 设置Swap优先级</h3>
+<p>linux系统swappiness参数</p>
+<p><strong>Swappiness为0时，物理内存使用到100%使用Swap空间</strong><br />
+<strong>Swappiness为60时，物理内存使用到40%使用Swap空间</strong></p>
+<p>输入<code>sysctl -q vm.swappiness</code>查看默认值<br />
+临时更改<code>sysctl vm.swappiness=10</code>将值改为10,大大降低系统对于swap的写入,可以将值设为0,这并不会禁止你对Swap的使用，而是系统对于Swap的写入尽可能的少尽可能多的使用实际内存。</p>
+<p>永久调整,编辑<code>/etc/sysctl.conf</code>文件,添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.swappiness=10</span><br></pre></td></tr></table></figure>
+<h3 id="设置swap开机自动挂载"><a class="markdownIt-Anchor" href="#设置swap开机自动挂载"></a> 设置Swap开机自动挂载</h3>
+<p>编辑<code>/etc/fstab</code>文件,添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/swapfile swap swap defaults 0 0</span><br></pre></td></tr></table></figure>
+</article>
+<hr>
+<article class="comments" id="valine">
+</article>
+                                </section>
+                </main>
+                <footer class="footer">
+    <div>&copy;&thinsp;2019-2022</div>
+</footer>
+<script src="https://cdn.bootcdn.net/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+
+<script src="/src/main.js"></script>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/smoothscroll/1.4.9/SmoothScroll.min.js"></script>
+
+
+  <script src='https://cdn.bootcdn.net/ajax/libs/valine/1.4.9/Valine.min.js'></script>
+      <script type="text/javascript">
+        window.onload = function () {
+          new Valine({
+            el: "#valine",
+            app_id: "BhI3o67ryeG4PyK8rDyprXb3-9Nh9j0Va",
+            app_key: "DsFNqzRxjVf3vyIfBahpxTG5",
+            placeholder: "昵称填写QQ号自动填写QQ昵称,邮箱,显示QQ头像",
+            path: window.location.pathname,
+            avatar: "mp",
+            meta: ["nick", "mail"],
+            requiredFields: ['mail'],
+            enableQQ: "true"
+          });
+        }
+      </script>  
+
+<script>
+(function(){var src="https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";document.write('<script src="'+src+'" id="sozz"><\/script>')})();(function(){var bp=document.createElement("script");var curProtocol=window.location.protocol.split(":")[0];if(curProtocol==="https"){bp.src="https://zz.bdstatic.com/linksubmit/push.js"}else{bp.src="http://push.zhanzhang.baidu.com/push.js"}var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s)})();
+</script>
+        </body>
+
+    </html>

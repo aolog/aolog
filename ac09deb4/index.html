@@ -1,0 +1,214 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    
+<head>
+  <title>小米路由器3(R3)无需虚拟机刷(Padavan)老毛子固件及刷回官方固件-小黑屋</title>
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://cdn.bootcdn.net">
+  <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+  <link rel="icon" type="image/png" href="/src/favicon.png">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <!-- <meta http-equiv="content-security-policy" content="upgrade-insecure-requests"> -->
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="小米路由器3(R3)无需虚拟机刷(Padavan)老毛子固件及刷回官方固件">
+  <meta name="Keywords" content="">
+  <link rel="canonical" href="https://aolog.cn/ac09deb4/ ">
+
+<link rel="stylesheet" href="/src/main.css">
+
+</head>
+
+        <body>
+            <header>
+<nav class="nav">
+  <div class="left">
+    <a href="/">Aolog's</a>
+  </div>
+  <div class="right">
+    
+      <a style="padding-right: 24px;" href="/archives/">Archives</a>
+      
+      <a style="padding-right: 24px;" href="/about/">About</a>
+      
+  </div>
+</nav>
+</header>
+                <main class="container">
+                    
+                        <div class="vie">
+                            <div class="title">
+                                小米路由器3(R3)无需虚拟机刷(Padavan)老毛子固件及刷回官方固件
+                            </div>
+                            <time class="date" datetime="2021-03-02 11:54" pubdate>
+                                发布时间: 2021-03-02, 中午
+                            </time>
+                        </div>
+                        
+                                <section class="con">
+                                    
+                                            <article class="post-body" id="post-body">
+  <h1 id="小米路由器3"><a class="markdownIt-Anchor" href="#小米路由器3"></a> 小米路由器3</h1>
+<p><strong>小米路由器3(R3)无需虚拟机刷(Padavan)老毛子固件及刷回官方固件</strong></p>
+<p>刷机首先是要有root，开启路由器的SSH功能获得root权限</p>
+<p>SSH功能使用许可协议</p>
+<blockquote>
+<p>开启小米路由器的SSH功能之后用户可以获得root权限，root之后用户的各种操作将有可能会导致路由器系统不稳定或软硬件出现故障。对于用户主动选择开启上述功能而可能产生的后果，小米公司将不会承担任何法律责任（包括但不限于路由器中数据的丢失、软硬件损坏）。同时，用户开启此功能即代表主动放弃小米公司提供的保修服务，请您在开启本功能之前慎重考虑！</p>
+</blockquote>
+<h2 id="开启ssh"><a class="markdownIt-Anchor" href="#开启ssh"></a> 开启SSH</h2>
+<p>小米路由器需升级到开发版,稳定版不支持。</p>
+<hr />
+<h3 id="官方教程"><a class="markdownIt-Anchor" href="#官方教程"></a> 官方教程：</h3>
+<p><em>需要小米账号</em></p>
+<p>下载 <a target="_blank" rel="noopener" href="http://bigota.miwifi.com/xiaoqiang/rom/r3/miwifi_r3_firmware_e9f31_2.27.120.bin">小米路由器3 开发版 版本2.27.120（2018年8月30日更新）</a></p>
+<ul>
+<li>安装开发版方式一：</li>
+</ul>
+<ol>
+<li>进入管理后台<a target="_blank" rel="noopener" href="//192.168.31.1">192.168.31.1</a> 或 <a target="_blank" rel="noopener" href="//miwifi.com">miwifi.com</a>；</li>
+<li><code>系统升级</code>-<code>手动升级</code> 选择下载的bin文件；</li>
+<li>等待安装完成之后，小米路由器会自动重启；</li>
+</ol>
+<ul>
+<li>安装开发版方式二：</li>
+</ul>
+<ol>
+<li>请将下载的bin文件复制到U盘（<code>FAT/FAT32格式</code>）的根目录下，保证文件名为<code>miwifi.bin</code>；</li>
+<li>断开小米路由器的电源，将U盘插入USB接口；</li>
+<li>按住reset按钮之后重新接入电源，指示灯变为黄色闪烁状态即可松开reset键；</li>
+<li>等待安装完成之后，小米路由器会自动重启；</li>
+</ol>
+<p>下载 <a target="_blank" rel="noopener" href="http://d.miwifi.com/rom/ssh">开启SSH工具</a></p>
+<ol>
+<li>请将下载的工具包bin文件复制到U盘（<code>FAT/FAT32</code>格式）的根目录下，保证文件名为<code>miwifi_ssh.bin</code>；</li>
+<li>断开小米路由器的电源，将U盘插入USB接口；</li>
+<li>按住reset按钮之后重新接入电源，指示灯变为黄色闪烁状态即可松开reset键；</li>
+<li>等待3-5秒后安装完成之后，小米路由器会自动重启，之后您就可以尽情折腾啦 ：）</li>
+</ol>
+<p>图示</p>
+<p><img src="http://lxcdn.dl.files.xiaomi.net/mfsv2/download/s010/p01Az9tmzL6c/jPHTtsyl2WTc8F.png" alt="图示" /></p>
+<hr />
+<h3 id="其它方法"><a class="markdownIt-Anchor" href="#其它方法"></a> 其它方法：</h3>
+<p><em>只适用于旧版本</em></p>
+<p>下载<a target="_blank" rel="noopener" href="http://bigota.miwifi.com/xiaoqiang/rom/r3/miwifi_r3_all_55ac7_2.11.20.bin">小米路由器开发版2.11.20</a></p>
+<ul>
+<li>安装方式同上</li>
+</ul>
+<p>开启SSH</p>
+<ol>
+<li>
+<p>进入管理后台<a target="_blank" rel="noopener" href="//192.168.31.1">192.168.31.1</a> 或 <a target="_blank" rel="noopener" href="//miwifi.com">miwifi.com</a> 从网址链接可以获取 <code>stok</code>，例如：<code>stok=c0a132ceccc8734b7b531469118f3e5c</code>；</p>
+</li>
+<li>
+<p>在浏览器中输入下面链接，替换 <code>stok</code> 为第一步获取的值；</p>
+<ol>
+<li>
+<p><strong>输入网址</strong></p>
+<p><code>http://192.168.31.1/cgi-bin/luci/;stok=c0a132ceccc8734b7b531469118f3e5c/api/xqnetwork/set_wifi_ap?ssid=Xiaomi&amp;encryption=NONE&amp;enctype=NONE&amp;channel=1%3Bnvram%20set%20ssh%5Fen%3D1%3B%20nvram%20commit</code></p>
+<p><strong>返回结果</strong></p>
+<p><code>&#123;&quot;msg&quot;:&quot;未能连接到指定WiFi(Connecting)&quot;,&quot;code&quot;:1616&#125;</code></p>
+</li>
+<li>
+<p><strong>输入网址</strong></p>
+<p><code>http://192.168.31.1/cgi-bin/luci/;stok=c0a132ceccc8734b7b531469118f3e5c/api/xqnetwork/set_wifi_ap?ssid=Xiaomi&amp;encryption=NONE&amp;enctype=NONE&amp;channel=1%3Bsed%20%2Di%20%22%3Ax%3AN%3As%2Fif%20%5C%5B%2E%2A%5C%3B%20then%5Cn%2E%2Areturn%200%5Cn%2E%2Afi%2F%23tb%2F%3Bb%20x%22%20%2Fetc%2Finit.d%2Fdropbear</code></p>
+<p><strong>返回结果</strong></p>
+<p><code>&#123;&quot;msg&quot;:&quot;未能连接到指定WiFi(Probe timeout)&quot;,&quot;code&quot;:1616&#125;</code></p>
+</li>
+<li>
+<p><strong>输入网址</strong></p>
+<p><code>http://192.168.31.1/cgi-bin/luci/;stok=c0a132ceccc8734b7b531469118f3e5c/api/xqnetwork/set_wifi_ap?ssid=Xiaomi&amp;encryption=NONE&amp;enctype=NONE&amp;channel=1%3B%2Fetc%2Finit.d%2Fdropbear%20start</code></p>
+<p><strong>返回结果</strong></p>
+<p><code>&#123;&quot;msg&quot;:&quot;未能连接到指定WiFi(Probe timeout)&quot;,&quot;code&quot;:1616&#125;</code></p>
+</li>
+<li>
+<p><strong>输入网址，SSH密码设置为<code>12345678</code></strong></p>
+<p><code>http://192.168.31.1/cgi-bin/luci/;stok=c0a132ceccc8734b7b531469118f3e5c/api/xqsystem/set_name_password?oldPwd=12345678&amp;newPwd=12345678</code></p>
+<p><strong>返回结果</strong></p>
+<p><code>&#123;&quot;code&quot;:0&#125;</code></p>
+</li>
+</ol>
+</li>
+</ol>
+<hr />
+<h2 id="刷机"><a class="markdownIt-Anchor" href="#刷机"></a> 刷机</h2>
+<p>Putty登陆路由器</p>
+<p><img src="https://s3.ax1x.com/2021/03/04/6Zwwi4.png" alt="6Zwwi4.png" /></p>
+<p><strong>开启串口，如果不幸变砖，可以通过串口来恢复</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nvram <span class="built_in">set</span> uart_en=1</span><br><span class="line">nvram <span class="built_in">set</span> boot_wait=on</span><br><span class="line">nvram commit</span><br></pre></td></tr></table></figure>
+<p>下载(Padavan)老毛子固件 <a target="_blank" rel="noopener" href="http://opt.cn2qq.com/padavan/MI-3_3.4.3.9-099.trx">MI-3_3.4.3.9-099.trx</a></p>
+<p>使用 WinSCP 命令上传固件到 <code>/tmp</code></p>
+<p><img src="https://s3.ax1x.com/2021/03/05/6Z79PJ.png" alt="6Z79PJ.png" /></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r C:\Users\admin\Downloads\MI-3_3.4.3.9-099.trx root@192.168.31.1:/tmp</span><br></pre></td></tr></table></figure>
+<p>Putty登陆路由器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=MI-3_3.4.3.9-099.trx bs=4194304 count=1 2&gt; /dev/null | <span class="built_in">dd</span> of=MI-3_3.4.3.9-099.trx.part1 2&gt; /dev/null</span><br><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=MI-3_3.4.3.9-099.trx bs=4194304 skip=1 2&gt; /dev/null | <span class="built_in">dd</span> of=MI-3_3.4.3.9-099.trx.part2 2&gt; /dev/null</span><br><span class="line">mtd write MI-3_3.4.3.9-099.trx.part1 kernel1</span><br><span class="line">mtd write MI-3_3.4.3.9-099.trx.part2 rootfs0</span><br><span class="line">nvram <span class="built_in">set</span> flag_last_success=1</span><br><span class="line">nvram commit</span><br></pre></td></tr></table></figure>
+<p>写入后可以验证一下md5</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mtd verify MI-3_3.4.3.9-099.trx.part1 kernel1</span><br><span class="line">mtd verify MI-3_3.4.3.9-099.trx.part2 rootfs0</span><br></pre></td></tr></table></figure>
+<p>然后重启</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<p>默认的路由器地址192.168.123.1(若默认浏览器打不开，换<code>Chrome</code>浏览器打开)<br />
+默认用户名admin, 密码admin<br />
+默认WIFI名称: PDCN 和PDCN_5G<br />
+默认WIFI密码：1234567890</p>
+<hr />
+<h2 id="刷回官方"><a class="markdownIt-Anchor" href="#刷回官方"></a> 刷回官方</h2>
+<p>开启SSH</p>
+<p><img src="https://s3.ax1x.com/2021/03/05/6Z7vQI.png" alt="6Z74Q1.md.png" /></p>
+<p>用户名、密码同后台管理用户名、密码</p>
+<p><img src="https://s3.ax1x.com/2021/03/04/6Zyii8.png" alt="6Zyii8.png" /></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mtd_write erase Firmware_Stub</span><br></pre></td></tr></table></figure>
+<p>下载 <a target="_blank" rel="noopener" href="http://bigota.miwifi.com/xiaoqiang/rom/r3/miwifi_r3_firmware_4accc_2.26.39.bin">小米路由器3 稳定版 版本2.26.39（2019年3月26日更新）</a>或者其它版本</p>
+<ol>
+<li>将下载的bin文件复制到U盘（<code>FAT/FAT32</code>格式）的根目录下，保证文件名为<code>miwifi.bin</code>；</li>
+<li>断开小米路由器的电源，将U盘插入USB接口；</li>
+<li>按住reset按钮之后重新接入电源，指示灯变为黄色闪烁状态即可松开reset键；</li>
+<li>等待安装完成之后，小米路由器会自动重启；</li>
+</ol>
+<p>条件是刷机过程并未破坏官方u-boot和kernel0分区，如果刷老毛子之前曾经刷过潘多拉，破坏了kernel0或u-boot分区，那就不能采用这个方法</p>
+
+</article>
+<hr>
+<article class="comments" id="valine">
+</article>
+                                </section>
+                </main>
+                <footer class="footer">
+    <div>&copy;&thinsp;2019-2022</div>
+</footer>
+<script src="https://cdn.bootcdn.net/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+
+<script src="/src/main.js"></script>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/smoothscroll/1.4.9/SmoothScroll.min.js"></script>
+
+
+  <script src='https://cdn.bootcdn.net/ajax/libs/valine/1.4.9/Valine.min.js'></script>
+      <script type="text/javascript">
+        window.onload = function () {
+          new Valine({
+            el: "#valine",
+            app_id: "BhI3o67ryeG4PyK8rDyprXb3-9Nh9j0Va",
+            app_key: "DsFNqzRxjVf3vyIfBahpxTG5",
+            placeholder: "昵称填写QQ号自动填写QQ昵称,邮箱,显示QQ头像",
+            path: window.location.pathname,
+            avatar: "mp",
+            meta: ["nick", "mail"],
+            requiredFields: ['mail'],
+            enableQQ: "true"
+          });
+        }
+      </script>  
+
+<script>
+(function(){var src="https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";document.write('<script src="'+src+'" id="sozz"><\/script>')})();(function(){var bp=document.createElement("script");var curProtocol=window.location.protocol.split(":")[0];if(curProtocol==="https"){bp.src="https://zz.bdstatic.com/linksubmit/push.js"}else{bp.src="http://push.zhanzhang.baidu.com/push.js"}var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s)})();
+</script>
+        </body>
+
+    </html>
